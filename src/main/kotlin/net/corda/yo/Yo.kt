@@ -89,7 +89,7 @@ class YoFlow(val target: Party, val msg: String) : FlowLogic<SignedTransaction>(
         progressTracker.currentStep = CREATING
 
         val me = serviceHub.myInfo.legalIdentities.first()
-        val notary = serviceHub.networkMapCache.notaryIdentities.single()
+        val notary = serviceHub.networkMapCache.notaryIdentities.first()
         val command = Command(YoContract.Send(), listOf(me.owningKey))
         val state = YoState(me, target, msg)
         val stateAndContract = StateAndContract(state, YO_CONTRACT_ID)
@@ -145,8 +145,8 @@ data class YoState(val origin: Party,
                 var origin: String = "",
                 @Column(name = "target")
                 var target: String = "",
-                @Column(name = "yo")
-                var yo: String = ""
+                @Column(name = "msg")
+                var msg: String = ""
         ) : PersistentState()
     }
 }
