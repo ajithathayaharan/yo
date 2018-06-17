@@ -56,7 +56,7 @@ class YoFlowTests {
             assertEquals(bYo.toString(), yo.toString())
             print("$bYo == $yo\n")
             // Using a custom criteria directly referencing schema entity attribute.
-            val expression = builder { PersistentYoState::yo.equal("Hi") }
+            val expression = builder { PersistentYoState::bYo.equal("Hi") }
             val customQuery = VaultCustomQueryCriteria(expression)
             val bYo2 = b.services.vaultService.queryBy<YoState>(customQuery).states.single().state.data
             assertEquals(bYo2.msg, yo.msg)
